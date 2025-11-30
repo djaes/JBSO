@@ -19,6 +19,11 @@ if (isset($routes[$page]['protected']) && $routes[$page]['protected'] && !isset(
     exit();
 }
 
+// Vérification du rôle
+    if (isset($routes[$page]['roles']) && !in_array($_SESSION['user']['role'], $routes[$page]['roles'])) {
+        header('Location: index.php?page=accueil&error=' . urlencode("Accès non autorisé."));
+        exit();
+    }
 
 // 4. Charge les dépendances de la page
 if (isset($routes[$page]['dependencies'])) {
@@ -39,10 +44,10 @@ if (!$pdo) {
 
 // 6.Instancie le repository pour les pages concernées
 if (in_array($page, ['connexion', 'inscription', 'mot_de_passe_oublie', 'reinitialiser_mot_de_passe'])) {
-    if (!file_exists(FONCTIONS_PATH . '/gestion_connexion/ConnexionRepository.php')) {
+    if (!file_exists(FONCTIONS_CONNEXION_PATH . '/ConnexionRepository.php')) {
         die("Erreur : Le fichier ConnexionRepository.php est introuvable.");
     }
-    require_once FONCTIONS_PATH . '/gestion_connexion/ConnexionRepository.php';
+    require_once FONCTIONS_CONNEXION_PATH . '/ConnexionRepository.php';
     $connectionRepo = new ConnectionRepository($pdo);
 }
 
@@ -62,6 +67,13 @@ switch ($page) {
                 $error = "Tous les champs sont obligatoires.";
             } else {
                 $user = $connectionRepo->findUserByUsernameOrEmail($usernameOrEmail);
+                // Affiche le contenu de $user pour débogage
+                    echo '<pre>';
+                    print_r($user);
+                    print_r($_SESSION);
+                    echo '</pre>';
+                    exit(); // Arrête l'exécution pour voir le résultat
+                        
                 if ($user && password_verify($password, $user['mot_de_passe'])) {
                     $_SESSION['user'] = $user;
                     $connectionRepo->updateLastAccess($user['id']);
