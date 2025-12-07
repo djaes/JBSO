@@ -1,0 +1,17 @@
+{# templates/typePiece/create.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un type de piece{% endblock %}
+
+{% block body %}
+    <h1>Créer un type de piece</h1>
+    {% if error is defined %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post" action="/type-piece/create">
+        <label for="libelle">Libellé :</label>
+        <input type="text" id="libelle" name="libelle" required>
+        <button type="submit">Créer</button>
+    </form>
+    <a href="/type-piece">Retour à la liste</a>
+{% endblock %}

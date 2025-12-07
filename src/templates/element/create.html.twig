@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Créer un élément</title>
+</head>
+<body>
+    <h1>Créer un nouvel élément</h1>
+    <form method="POST" action="/element/create">
+        <label>Nom : <input type="text" name="nom" required></label><br>
+        <label>Type :
+            <select name="type_element_id" required>
+                {% for type in typesElement %}
+                    <option value="{{ type.id }}">{{ type.nom }}</option>
+                {% endfor %}
+            </select>
+        </label><br>
+        <label>Pièce :
+            <select name="piece_id" required>
+                {% for piece in pieces %}
+                    <option value="{{ piece.id }}">{{ piece.nom }}</option>
+                {% endfor %}
+            </select>
+        </label><br>
+        <label>Degré de finition :
+            <select name="degre_finition_id" required>
+                {% for degre in degresFinition %}
+                    <option value="{{ degre.id }}">{{ degre.libelle }}</option>
+                {% endfor %}
+            </select>
+        </label><br>
+        <button type="submit">Créer</button>
+    </form>
+</body>
+</html>

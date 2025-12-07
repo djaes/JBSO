@@ -1,0 +1,22 @@
+{
+    "name": "djaes/jbso",
+    "description": "Application web pour organiser les tâches de peintre en bâtiment",
+    "autoload": {
+        "psr-4": {
+            "JBSO\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "djaes",
+            "email": "djaes33@gmail.com"
+        }
+    ],
+    "require": {
+        "php": ">=8.4",
+        "nikic/fast-route": "^1.3",
+        "twig/twig": "^3.22",
+        "doctrine/dbal": "^4.4",
+        "vlucas/phpdotenv": "^5.6"
+    }
+}

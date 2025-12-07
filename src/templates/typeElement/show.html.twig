@@ -1,0 +1,10 @@
+{# templates/typeElement/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du type d'élément{% endblock %}
+
+{% block body %}
+    <h1>Détails du type d'élément : {{ typeElement.getLibelle() }}</h1>
+    <p>ID : {{ typeElement.getId() }}</p>
+    <a href="/type-element">Retour à la liste</a>
+{% endblock %}

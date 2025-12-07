@@ -1,0 +1,19 @@
+{# templates/typePiece/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des types de pièces{% endblock %}
+
+{% block body %}
+    <h1>Liste des types de pièces</h1>
+    <a href="/type-piece/create">Créer un nouveau type de piece</a>
+    <ul>
+        {% for typePiece in typePieces %}
+            <li>
+                <a href="/type-piece/{{ typePiece.getId() }}">
+                    {{ typePiece.getLibelle() }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Retour à l'accueil</a>
+{% endblock %}

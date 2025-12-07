@@ -1,0 +1,10 @@
+{# templates/typePiece/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Détails du type de pièce{% endblock %}
+
+{% block body %}
+    <h1>Détails du type de pièce : {{ typePiece.getLibelle() }}</h1>
+    <p>ID : {{ typePiece.getId() }}</p>
+    <a href="/type-piece">Retour à la liste</a>
+{% endblock %}

@@ -1,0 +1,18 @@
+{# templates/typeFinition/create.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un type de finition{% endblock %}
+
+{% block body %}
+    <h1>Créer un type de finition</h1>
+    {% if error is defined %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post" action="/type-finition/create">
+        <label for="libelle">Libellé :</label>
+        <input type="text" id="libelle" name="libelle" required>
+        <button type="submit">Créer</button>
+    </form>
+    <a href="/type-finition">Retour à la liste</a>
+{% endblock %}
+

@@ -1,0 +1,19 @@
+{# templates/typeAction/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des types d'actions{% endblock %}
+
+{% block body %}
+    <h1>Liste des types d'actions</h1>
+    <a href="/type-action/create">Créer un nouveau type d'actions</a>
+    <ul>
+        {% for typeAction in typeActions %}
+            <li>
+                <a href="/type-action/{{ typeAction.getId() }}">
+                    {{ typeAction.getLibelle() }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Retour à l'accueil</a>
+{% endblock %}

@@ -1,0 +1,14 @@
+{# templates/base.html.twig #}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}JBSOrganizer{% endblock %}</title>
+        <link rel="stylesheet" href="asset/css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            {% block body %}{% endblock %}
+        </div>
+    </body>
+</html>

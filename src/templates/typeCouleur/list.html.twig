@@ -1,0 +1,19 @@
+{# templates/typeCouleur/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des types de couleurs{% endblock %}
+
+{% block body %}
+    <h1>Liste des types de couleurs</h1>
+    <a href="/type-couleur/create">Créer un nouveau type de couleur</a>
+    <ul>
+        {% for typeCouleur in typeCouleurs %}
+            <li>
+                <a href="/type-couleur/{{ typeCouleur.getId() }}">
+                    {{ typeCouleur.getLibelle() }}
+                </a>
+            </li>
+        {% endfor %}
+    </ul>
+    <a href="/">Retour à l'accueil</a>
+{% endblock %}

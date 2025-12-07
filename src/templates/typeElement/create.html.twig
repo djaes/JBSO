@@ -1,0 +1,30 @@
+{# templates/typeElement/create.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un type d'élément{% endblock %}
+
+{% block body %}
+    <h1>Créer un type d'élément</h1>
+    {% if error is defined %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post" action="/type-element/create">
+        <div>
+            <label for="libelle">Libellé :</label>
+            <input type="text" id="libelle" name="libelle" required>
+        </div>
+        <div>
+            <label for="traitement">Traitement :</label>
+            <select name="traitement" id="traitement" required>
+                <option value="">-- Sélectionnez un traitement --</option>
+                <option value="masquer">À masquer</option>
+                <option value="traiter">À traiter</option>
+                <option value="demonter">À démonter</option>
+            </select>
+        </div>
+        <button type="submit">Créer</button>
+    </form>
+    <a href="/type-element">Retour à la liste</a>
+{% endblock %}
+
+

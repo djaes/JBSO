@@ -1,0 +1,19 @@
+{# templates/typeCouleur/create.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Créer un type de couleur{% endblock %}
+
+{% block body %}
+    <h1>Créer un type de couleur</h1>
+    {% if error is defined %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post" action="/type-couleur/create">
+        <label for="libelle">Libellé :</label>
+        <input type="text" id="libelle" name="libelle" required>
+        <label for="code_hexa">Couleur hexa :</label>
+        <input type="color" id="code_hexa" name="code_hexa" />
+        <button type="submit">Créer</button>
+    </form>
+    <a href="/type-couleur">Retour à la liste</a>
+{% endblock %}

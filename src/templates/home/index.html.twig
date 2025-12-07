@@ -1,0 +1,17 @@
+{# templates/home/index.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil - JBSOrganizer{% endblock %}
+
+{% block body %}
+    <h1>Bienvenue sur JBSOrganizer</h1>
+    <p>Voici les différentes listes disponibles :</p>
+    <ul>
+        <li><a href="/type-element">Types d'éléments</a></li>
+        <li><a href="/type-piece">Types de pièces</a></li>
+        <li><a href="/type-action">Types d'actions</a></li>
+        <li><a href="/type-tache">Types de tâches</a></li>
+        <li><a href="/type-couleur">Types de couleurs</a></li>
+        <li><a href="/type-finition">Types de finitions</a></li>
+    </ul>
+{% endblock %}
