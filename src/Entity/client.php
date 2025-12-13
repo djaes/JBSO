@@ -1,13 +1,16 @@
 <?php
+// src/Entity/Client.php
 namespace JBSO\Entity;
 
 class Client
 {
     private ?int $id;
+    //le nom sera traiter commme label dans les classes generic
     private string $nom;
     private string $adresse;
     private string $telephone;
     private string $email;
+    private string $label;
 
     // Getters et Setters
     public function getId(): ?int
@@ -20,14 +23,14 @@ class Client
         $this->id = $id;
     }
 
-    public function getNom(): string
+    public function getLabel(): string
     {
         return $this->nom;
     }
 
-    public function setNom(string $nom): void
+    public function setLabel(string $label): void
     {
-        $this->nom = $nom;
+        $this->nom = $label;
     }
 
     public function getAdresse(): string
@@ -59,4 +62,5 @@ class Client
     {
         $this->email = $email;
     }
+    
 }

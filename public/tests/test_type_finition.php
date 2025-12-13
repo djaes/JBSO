@@ -12,7 +12,7 @@ $lastId = isset($_POST['last_id']) ? (int)$_POST['last_id'] : 0;
 
 
 // Affichage du titre
-echo "<h1>Test : DegreFinition</h1>";
+echo "<h1>Test : Finition</h1>";
 backToIndexButton();
 
 
@@ -27,7 +27,7 @@ try {
 // Étape 1 : Création d'un DegreFinition
 if ($step == 1) {
     try {
-        $sql = "INSERT INTO DegreFinition (libelle) VALUES ('test_soigné')";
+        $sql = "INSERT INTO TypeFinition (label) VALUES ('test_finition')";
         $conn->executeStatement($sql);
         $lastId = $conn->lastInsertId();
         logTest("Création d'un DegreFinition avec l'ID : $lastId");
@@ -41,11 +41,11 @@ if ($step == 1) {
 // Étape 2 : Listage des DegreFinition
 else if ($step == 2) {
     try {
-        $sql = "SELECT * FROM DegreFinition";
+        $sql = "SELECT * FROM TypeFinition";
         $degres = $conn->fetchAllAssociative($sql);
-        logTest("Listage des DegreFinition : " . count($degres) . " résultats.");
+        logTest("Listage des TypeFinition : " . count($degres) . " résultats.");
         foreach ($degres as $degre) {
-            echo "<p>- ID: {$degre['id']}, Libellé: {$degre['libelle']}</p>";
+            echo "<p>- ID: {$degre['id']}, Label: {$degre['label']}</p>";
         }
         nextButton($step, $lastId);
     } catch (\Exception $e) {
@@ -57,12 +57,12 @@ else if ($step == 2) {
 // Étape 3 : Suppression du DegreFinition créé
 else if ($step == 3) {
     try {
-        $sql = "DELETE FROM DegreFinition WHERE id = ?";
+        $sql = "DELETE FROM TypeFinition WHERE id = ?";
         $conn->executeStatement($sql, [$lastId]);
-        logTest("Suppression du DegreFinition avec l'ID : $lastId");
+        logTest("Suppression du TypeFinition avec l'ID : $lastId");
         nextButton($step, $lastId);
     } catch (\Exception $e) {
-        logTest("Échec de la suppression du DegreFinition : " . $e->getMessage(), false);
+        logTest("Échec de la suppression du TypeFinition : " . $e->getMessage(), false);
         nextButton($step, $lastId);
     }
 }
@@ -70,12 +70,12 @@ else if ($step == 3) {
 // Étape 4 : Vérification de la suppression
 else if ($step == 4) {
     try {
-        $sql = "SELECT COUNT(*) as count FROM DegreFinition WHERE id = ?";
+        $sql = "SELECT COUNT(*) as count FROM TypeFinition WHERE id = ?";
         $count = $conn->fetchOne($sql, [$lastId]);
         if ($count == 0) {
-            logTest("Vérification : Le DegreFinition a bien été supprimé.");
+            logTest("Vérification : Le TypeFinition a bien été supprimé.");
         } else {
-            logTest("Erreur : Le DegreFinition n'a pas été supprimé.", false);
+            logTest("Erreur : Le TypeFinition n'a pas été supprimé.", false);
         }
         nextButton($step, $lastId);
     } catch (\Exception $e) {
@@ -83,18 +83,18 @@ else if ($step == 4) {
         nextButton($step, $lastId);
     }
 }
-// Étape 5 : Listage des DegreFinition
+// Étape 5 : Listage des TypeFinition
 else if ($step == 5) {
     try {
-        $sql = "SELECT * FROM DegreFinition";
+        $sql = "SELECT * FROM TypeFinition";
         $degres = $conn->fetchAllAssociative($sql);
-        logTest("Listage des DegreFinition apres supression: " . count($degres) . " résultats.");
+        logTest("Listage des TypeFinition apres supression: " . count($degres) . " résultats.");
         foreach ($degres as $degre) {
-            echo "<p>- ID: {$degre['id']}, Libellé: {$degre['libelle']}</p>";
+            echo "<p>- ID: {$degre['id']}, Label: {$degre['label']}</p>";
         }
         nextButton($step, $lastId);
     } catch (\Exception $e) {
-        logTest("Échec du listage des DegreFinition : " . $e->getMessage(), false);
+        logTest("Échec du listage des TypeFinition : " . $e->getMessage(), false);
         nextButton($step, $lastId);
     }
 }
@@ -102,7 +102,7 @@ else if ($step == 5) {
 // Étape 5 : Test de suppression d'un ID inexistant
 else if ($step == 6) {
     try {
-        $sql = "DELETE FROM DegreFinition WHERE id = -1";
+        $sql = "DELETE FROM TypeFinition WHERE id = -1";
         $conn->executeStatement($sql);
         logTest("Test de suppression d'un ID inexistant : OK (pas d'erreur levée).");
         echo "<p>Tous les tests sont terminés !</p>";

@@ -1,64 +1,28 @@
 <?php
 // src/Controller/TypeCouleurController.php
+
 namespace JBSO\Controller;
 
 use JBSO\Repository\TypeCouleurRepository;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
-class TypeCouleurController
+class TypeCouleurController extends GenericController
 {
-    private Environment $twig;
-    private TypeCouleurRepository $typeCouleurRepository;
-
     public function __construct()
     {
-        $this->typeCouleurRepository = new TypeCouleurRepository();
-        $loader = new FilesystemLoader(__DIR__ . '/../templates');
-        $this->twig = new Environment($loader);
+        parent::__construct();
+        $this->repository = new TypeCouleurRepository();
     }
 
-    public function list(): void
+    protected function getEntityName(): string
     {
-        $typeCouleurs = $this->typeCouleurRepository->findAll();
-        echo $this->twig->render('typeCouleur/list.html.twig', [
-            'typeCouleurs' => $typeCouleurs
-        ]);
+        return 'type-couleur';
     }
-
-    public function show(int $id): void
+    protected function getName(): string
     {
-        $typeCouleur = $this->typeCouleurRepository->findById($id);
-        if (!$typeCouleur) {
-            throw new \RuntimeException("Type de couleur non trouvé.");
-        }
-
-        echo $this->twig->render('typeCouleur/show.html.twig', [
-            'typeCouleur' => $typeCouleur
-        ]);
+        return "Type de Couleur";
     }
-
-    // Affiche le formulaire de création de type de couleur
-    public function showCreateForm(): void
+    protected function getTemplatePath(): string
     {
-        echo $this->twig->render('typeCouleur/create.html.twig', [
-            'message' => 'create.html',
-        ]);
+        return 'typeCouleur';
     }
-    // Crée un nouveau type Action
-    public function create(): void
-    {
-        $libelle = $_POST['libelle'] ?? '';
-
-        if (empty($libelle)) {
-            echo $this->twig->render('typeCouleur/create.html.twig', [
-                'error' => 'Le libellé est obligatoire.'
-            ]);
-            return;
-        }
-        
-        $id = $this->typeElementRepository->create($libelle);
-        header('Location: /type-couleur/'. $id);
-    }
-
 }

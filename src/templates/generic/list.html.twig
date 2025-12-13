@@ -1,0 +1,26 @@
+{# templates/generic/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des {{ entityName }}{% endblock %}
+
+{% block body %}
+    <h1>Liste des {{ entityName }}</h1>
+    
+    <a href="/{{ entityName }}/create">Créer un {{ entityName }}</a>
+    <ul>
+        {% for entity in entities %}
+            <li>
+                <a href="/{{ entityName }}/{{ entity.getId() }}">
+                    {{ entity.getLibelle() }}
+                </a>
+                {# Inclut le template spécifique pour les détails de la liste #}
+                {% include template ~ '/list.html.twig' %}
+            </li>
+        {% else %}
+            <li>Aucun(e) {{ entityName }} trouvé(e).</li>
+        {% endfor %}
+    </ul>
+    
+
+    <a href="/">Retour à l'accueil</a>
+{% endblock %}

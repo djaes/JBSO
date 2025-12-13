@@ -12,7 +12,7 @@ $lastId = isset($_POST['last_id']) ? (int)$_POST['last_id'] : 0;
 
 
 // Affichage du titre
-echo "<h1>Test : DegreFinition</h1>";
+echo "<h1>Test : type de traitement</h1>";
 backToIndexButton();
 try {
     $conn = Connection::getConnection();
@@ -22,45 +22,45 @@ try {
     exit(1);
 }
 
-// Étape 1 : Création d'un TypeAction
+// Étape 1 : Création d'un TypeTraitement
 if ($step == 1) {
     try {
-        $sql = "INSERT INTO TypeAction (nom) VALUES ('Test TypeAction')";
+        $sql = "INSERT INTO TypeTraitement (label) VALUES ('à tester')";
         $conn->executeStatement($sql);
         $lastId = $conn->lastInsertId();
-        logTest("Création d'un TypeAction avec l'ID : $lastId");
+        logTest("Création d'un TypeTraitement avec l'ID : $lastId");
         nextButton($step, $lastId);
     } catch (\Exception $e) {
-        logTest("Échec de la création du TypeAction : " . $e->getMessage(), false);
+        logTest("Échec de la création du TypeTraitement : " . $e->getMessage(), false);
         nextButton($step);
     }
 }
 
-// Étape 2 : Listage des TypeAction
+// Étape 2 : Listage des TypeTraitement
 else if ($step == 2) {
     try {
-        $sql = "SELECT * FROM TypeAction";
+        $sql = "SELECT * FROM TypeTraitement";
         $types = $conn->fetchAllAssociative($sql);
-        logTest("Listage des TypeAction : " . count($types) . " résultats.");
+        logTest("Listage des TypeTraitement : " . count($types) . " résultats.");
         foreach ($types as $type) {
-            echo "<p>- ID: {$type['id']}, Nom: {$type['nom']}</p>";
+            echo "<p>- ID: {$type['id']}, Label: {$type['label']}</p>";
         }
         nextButton($step, $lastId);
     } catch (\Exception $e) {
-        logTest("Échec du listage des TypeAction : " . $e->getMessage(), false);
+        logTest("Échec du listage des TypeTraitement : " . $e->getMessage(), false);
         nextButton($step, $lastId);
     }
 }
 
-// Étape 3 : Suppression du TypeAction créé
+// Étape 3 : Suppression du TypeTraitement créé
 else if ($step == 3) {
     try {
-        $sql = "DELETE FROM TypeAction WHERE id = ?";
+        $sql = "DELETE FROM TypeTraitement WHERE id = ?";
         $conn->executeStatement($sql, [$lastId]);
-        logTest("Suppression du TypeAction avec l'ID : $lastId");
+        logTest("Suppression du TypeTraitement avec l'ID : $lastId");
         nextButton($step, $lastId);
     } catch (\Exception $e) {
-        logTest("Échec de la suppression du TypeAction : " . $e->getMessage(), false);
+        logTest("Échec de la suppression du TypeTraitement : " . $e->getMessage(), false);
         nextButton($step, $lastId);
     }
 }
@@ -68,12 +68,12 @@ else if ($step == 3) {
 // Étape 4 : Vérification de la suppression
 else if ($step == 4) {
     try {
-        $sql = "SELECT COUNT(*) as count FROM TypeAction WHERE id = ?";
+        $sql = "SELECT COUNT(*) as count FROM TypeTraitement WHERE id = ?";
         $count = $conn->fetchOne($sql, [$lastId]);
         if ($count == 0) {
-            logTest("Vérification : Le TypeAction a bien été supprimé.");
+            logTest("Vérification : Le TypeTraitement a bien été supprimé.");
         } else {
-            logTest("Erreur : Le TypeAction n'a pas été supprimé.", false);
+            logTest("Erreur : Le TypeTraitement n'a pas été supprimé.", false);
         }
         echo "<p>Tous les tests sont terminés !</p>";
     } catch (\Exception $e) {

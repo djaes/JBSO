@@ -9,10 +9,8 @@ use JBSO\Database\Connection;
 $step = isset($_POST['step']) ? (int)$_POST['step'] : 1;
 $lastId = isset($_POST['last_id']) ? (int)$_POST['last_id'] : 0;
 
-
-
 // Affichage du titre
-echo "<h1>Test : DegreFinition</h1>";
+echo "<h1>Test : type tache</h1>";
 backToIndexButton();
 try {
     $conn = Connection::getConnection();
@@ -25,7 +23,7 @@ try {
 // Étape 1 : Création d'une Tache
 if ($step == 1) {
     try {
-        $sql = "INSERT INTO Tache (nom, description) VALUES ('Test Tache', 'Description de test')";
+        $sql = "INSERT INTO TypeTache (label) VALUES ('Test Tache')";
         $conn->executeStatement($sql);
         $lastId = $conn->lastInsertId();
         logTest("Création d'une Tache avec l'ID : $lastId");
@@ -39,11 +37,11 @@ if ($step == 1) {
 // Étape 2 : Listage des Taches
 else if ($step == 2) {
     try {
-        $sql = "SELECT * FROM Tache";
+        $sql = "SELECT * FROM TypeTache";
         $taches = $conn->fetchAllAssociative($sql);
-        logTest("Listage des Taches : " . count($taches) . " résultats.");
+        logTest("Listage des Type de Taches : " . count($taches) . " résultats.");
         foreach ($taches as $tache) {
-            echo "<p>- ID: {$tache['id']}, Nom: {$tache['nom']}</p>";
+            echo "<p>- ID: {$tache['id']}, label: {$tache['label']}</p>";
         }
         nextButton($step, $lastId);
     } catch (\Exception $e) {
@@ -55,7 +53,7 @@ else if ($step == 2) {
 // Étape 3 : Suppression de la Tache créée
 else if ($step == 3) {
     try {
-        $sql = "DELETE FROM Tache WHERE id = ?";
+        $sql = "DELETE FROM TypeTache WHERE id = ?";
         $conn->executeStatement($sql, [$lastId]);
         logTest("Suppression de la Tache avec l'ID : $lastId");
         nextButton($step, $lastId);
@@ -68,7 +66,7 @@ else if ($step == 3) {
 // Étape 4 : Vérification de la suppression
 else if ($step == 4) {
     try {
-        $sql = "SELECT COUNT(*) as count FROM Tache WHERE id = ?";
+        $sql = "SELECT COUNT(*) as count FROM TypeTache WHERE id = ?";
         $count = $conn->fetchOne($sql, [$lastId]);
         if ($count == 0) {
             logTest("Vérification : La Tache a bien été supprimée.");

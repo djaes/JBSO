@@ -8,17 +8,17 @@ class TypeCouleur
 {
     private int $id;
     private string $libelle;
-    private string $codeHexa;
+    private ?string $codeCouleur = null;
 
     // Getters
     public function getId(): int { return $this->id; }
     public function getLibelle(): string { return $this->libelle; }
-    public function getCodeHexa(): string { return $this->codeHexa; }
+    public function getCodeCouleur(): ?string { return $this->codeCouleur; }
     
     // Setters
     public function setId(int $id): void { $this->id = $id; }
     public function setLibelle(string $libelle): void { $this->libelle = $libelle; }
-    public function setCodeHexa(string $codeHexa): void { $this->codeHexa = $codeHexa; }
+    public function setCodeCouleur(string $codeCouleur): void { $this->codeCouleur = $codeCouleur; }
 
 
     public static function findById(int $id): ?self

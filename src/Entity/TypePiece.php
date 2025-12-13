@@ -2,43 +2,20 @@
 // src/Entity/TypePiece.php
 namespace JBSO\Entity;
 
-use JBSO\Database\Connection;
-
 class TypePiece
 {
-    private ?int $id;
-    private string $libelle;
+     private ?int $id;
+    private string $label;
 
     // Getters 
     public function getId(): ?int { return $this->id; }
-    public function getLibelle(): string { return $this->libelle; }
+    public function getLabel(): string { return $this->label; }
 
-    //Setters
+    // Setters
     public function setId(?int $id): void { $this->id = $id; }
-    public function setLibelle(string $libelle): void { $this->libelle = $libelle; }
+    public function setLabel(string $label): void { $this->label = $label; }
 
-    /**
-     * Trouve un type de piece par son ID.
-     */
-    public static function findById(int $id): ?self
-    {
-        $data = Connection::getConnection()->fetchAssociative(
-            'SELECT * FROM TypePiece WHERE id = ?',
-            [$id]
-        );
-
-        if (!$data) {
-            return null;
-        }
-
-        $typePiece = new self();
-        $typePiece->setId($data['id']);
-        $typePiece->setLibelle($data['libelle']);
-
-        return $typePiece;
-    }
-
-
+    
 }
 
 ?>

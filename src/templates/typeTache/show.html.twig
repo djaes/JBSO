@@ -1,13 +1,2 @@
 {# templates/typeTache/show.html.twig #}
-{% extends 'base.html.twig' %}
-
-{% block title %}Détails du type de tâche{% endblock %}
-
-{% block body %}
-    <h1>Détails du type de tâche : {{ typeTache.getLibelle() }}</h1>
-    <p>ID : {{ typeTache.getId() }}</p>
-    {% if typeTache.getDescription() %}
-        <p>Description : {{ typeTache.getDescription() }}</p>
-    {% endif %}
-    <a href="/type-tache">Retour à la liste</a>
-{% endblock %}
+<p>Description : {{ entity.getDescription() }}</p>

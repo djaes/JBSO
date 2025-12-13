@@ -1,64 +1,28 @@
 <?php
 // src/Controller/TypePieceController.php
+
 namespace JBSO\Controller;
 
 use JBSO\Repository\TypePieceRepository;
-use Twig\Environment;
-use Twig\Loader\FilesystemLoader;
 
-class TypePieceController
+class TypePieceController extends GenericController
 {
-    private Environment $twig;
-    private TypePieceRepository $typePieceRepository;
-
     public function __construct()
     {
-        $this->typePieceRepository = new TypePieceRepository();
-        $loader = new FilesystemLoader(__DIR__ . '/../templates');
-        $this->twig = new Environment($loader);
+        parent::__construct();
+        $this->repository = new TypePieceRepository();
     }
 
-    public function list(): void
+    protected function getEntityName(): string
     {
-        $typePieces = $this->typePieceRepository->findAll();
-        echo $this->twig->render('typePiece/list.html.twig', [
-            'typePieces' => $typePieces
-        ]);
+        return 'type-piece';
     }
-
-    public function show(int $id): void
+    protected function getName(): string
     {
-        $typePiece = $this->typePieceRepository->findById($id);
-        if (!$typePiece) {
-            throw new \RuntimeException("Type de pièce non trouvé.");
-        }
-
-        echo $this->twig->render('typePiece/show.html.twig', [
-            'typePiece' => $typePiece
-        ]);
+        return "Type de Piece";
     }
-
-    // Affiche le formulaire de création de type dde piece
-    public function showCreateForm(): void
+    protected function getTemplatePath(): string
     {
-        echo $this->twig->render('typePiece/create.html.twig', [
-            'message' => 'create.html',
-        ]);
+        return 'typePiece';
     }
-    // Crée un nouveau type de piece
-    public function create(): void
-    {
-        $libelle = $_POST['libelle'] ?? '';
-        
-        if (empty($libelle)) {
-            echo $this->twig->render('typePiece/create.html.twig', [
-                'error' => 'Le libellé est obligatoire.'
-            ]);
-            return;
-        }
-        
-        $id = $this->typeElementRepository->create($libelle);
-        header('Location: /type-piece/'. $id);
-    }
-
 }

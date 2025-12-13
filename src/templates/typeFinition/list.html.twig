@@ -1,19 +1,1 @@
 {# templates/typeFinition/list.html.twig #}
-{% extends 'base.html.twig' %}
-
-{% block title %}Liste des types de finitions{% endblock %}
-
-{% block body %}
-    <h1>Liste des types de finitions</h1>
-    <a href="/type-finition/create">Créer un nouveau type de finitions</a>
-    <ul>
-        {% for typeFinition in typeFinitions %}
-            <li>
-                <a href="/type-finition/{{ typeFinition.getId() }}">
-                    {{ typeFinition.getLibelle() }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="/">Retour à l'accueil</a>
-{% endblock %}

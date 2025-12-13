@@ -1,11 +1,2 @@
 {# templates/typeCouleur/show.html.twig #}
-{% extends 'base.html.twig' %}
-
-{% block title %}Détails du type de couleur{% endblock %}
-
-{% block body %}
-    <h1>Détails du type de couleur : {{ typeCouleur.getLibelle() }}</h1>
-    <p>ID : {{ typeCouleur.getId() }}</p>
-    <p>Code Hexadécimal : <span style="color: {{ typeCouleur.getCodeHex() }}">{{ typeCouleur.getCodeHex() }}</span></p>
-    <a href="/type-couleur">Retour à la liste</a>
-{% endblock %}
+code hexa {{ typeCouleur.getCodeHexa() }}

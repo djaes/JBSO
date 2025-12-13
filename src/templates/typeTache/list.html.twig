@@ -1,19 +1,5 @@
 {# templates/typeTache/list.html.twig #}
-{% extends 'base.html.twig' %}
 
-{% block title %}Liste des types de tâches{% endblock %}
-
-{% block body %}
-    <h1>Liste des types de tâches</h1>
-    <a href="/type-tache/create">Créer un nouveau type de  tache</a>
-    <ul>
-        {% for typeTache in typeTaches %}
-            <li>
-                <a href="/type-tache/{{ typeTache.getId() }}">
-                    {{ typeTache.getLibelle() }}    {{ typeTache.getDescription() }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="/">Retour à l'accueil</a>
-{% endblock %}
+ 
+ 
+                

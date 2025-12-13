@@ -1,0 +1,24 @@
+{# templates/generic/update.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Mettre à jour le/la {{ entityName }}{% endblock %}
+
+{% block body %}
+    <h1>Mettre à jour le/la {{ entityName }}</h1>
+    {% if error is defined %}
+        <p style="color: red;">{{ error }}</p>
+    {% endif %}
+    <form method="post" action="/{{ entityName }}/{{ entity.getId() }}/update">
+        <div>
+            <label for="libelle">Libellé :</label>
+            <input type="text" id="libelle" name="libelle" value="{{ entity.getLibelle() }}" required>
+        </div>
+        <div>
+        {# Inclut le template spécifique pour le formulaire de mise à jour #}
+        {% include template ~ '/update.html.twig' %}
+
+        </div>
+        <button type="submit">Mettre à jour</button>
+    </form>
+    <a href="/{{ entityName }}/{{ entity.getId() }}">Retour aux détails</a>
+{% endblock %}

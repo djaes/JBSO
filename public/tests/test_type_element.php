@@ -1,34 +1,17 @@
 <?php
 require_once __DIR__ . '/../../vendor/autoload.php';
+require_once __DIR__ . '/../../debug.php';
+require_once __DIR__ . '/fonction.php';
 
 use JBSO\Database\Connection;
-use JBSO\Entity\TypeElement;
-use JBSO\Repository\TypeElementRepository;
 
+// Récupère l'étape actuelle (par défaut : 1)
 $step = isset($_POST['step']) ? (int)$_POST['step'] : 1;
 $lastId = isset($_POST['last_id']) ? (int)$_POST['last_id'] : 0;
 
-function logTest($message, $success = true) {
-    echo "<p style='color: ".($success ? "green" : "red").";'>[".($success ? "SUCCESS" : "ERROR")."] $message</p>";
-}
-
-function nextButton($step, $lastId = 0) {
-    echo '<form method="post" style="margin: 15px 0;">';
-    echo '<input type="hidden" name="step" value="'.($step + 1).'">';
-    echo '<input type="hidden" name="last_id" value="'.$lastId.'">';
-    echo '<button type="submit" style="padding: 8px 15px; background: #4CAF50; color: white; border: none; cursor: pointer;">Suivant →</button>';
-    echo '</form>';
-}
-
-function backToIndexButton() {
-    echo '<div style="margin: 20px 0;">';
-    echo '<a href="index.php" style="padding: 8px 15px; background: #f44336; color: white; text-decoration: none;">← Retour à l\'index</a>';
-    echo '</div>';
-}
-
-echo "<h1>Test : TypeElement</h1>";
+// Affichage du titre
+echo "<h1>Test : type element</h1>";
 backToIndexButton();
-
 try {
     $conn = Connection::getConnection();
     logTest("Connexion à la base de données établie.");
@@ -37,48 +20,45 @@ try {
     exit(1);
 }
 
-// Étape 1 : Création d'un TypeElement avec traitement
+// Étape 1 : Création d'un TypeElement 
 if ($step == 1) {
     try {
-        $typeElement = new TypeElement();
-        $typeElement->setNom("Test TypeElement");
-        $typeElement->setTraitement("à démonter"); // Exemple de traitement
-
-        $repository = new TypeElementRepository();
-        $lastId = $repository->save($typeElement);
-        logTest("Création d'un TypeElement avec l'ID : $lastId");
+        $sql = "INSERT INTO TypeTraitement (label) VALUES ('Test Traitement')";
+        $conn->executeStatement($sql);
+        $lastId = $conn->lastInsertId();
+        logTest("Création d'un Traitement avec l'ID : $lastId");
         nextButton($step, $lastId);
     } catch (\Exception $e) {
-        logTest("Échec de la création du TypeElement : " . $e->getMessage(), false);
+        logTest("Échec de la création du TypeTraitement : " . $e->getMessage(), false);
         nextButton($step);
     }
 }
 
-// Étape 2 : Listage des TypeElement
+// Étape 2 : Listage des TypeTraitement
 else if ($step == 2) {
     try {
-        $repository = new TypeElementRepository();
-        $typeElements = $repository->findAll();
-        logTest("Listage des TypeElement : " . count($typeElements) . " résultats.");
-        foreach ($typeElements as $typeElement) {
-            echo "<p>- ID: {$typeElement->getId()}, Nom: {$typeElement->getNom()}, Traitement: {$typeElement->getTraitement()}</p>";
+        $sql = "SELECT * FROM TypeTraitement";
+        $taches = $conn->fetchAllAssociative($sql);
+        logTest("Listage des Type de Traitement : " . count($taches) . " résultats.");
+        foreach ($taches as $tache) {
+            echo "<p>- ID: {$tache['id']}, label: {$tache['label']}</p>";
         }
         nextButton($step, $lastId);
     } catch (\Exception $e) {
-        logTest("Échec du listage des TypeElement : " . $e->getMessage(), false);
+        logTest("Échec du listage des TypeTraitement : " . $e->getMessage(), false);
         nextButton($step, $lastId);
     }
 }
 
-// Étape 3 : Suppression du TypeElement créé
+// Étape 3 : Suppression du TypeTraitement créé
 else if ($step == 3) {
     try {
-        $repository = new TypeElementRepository();
-        $repository->delete($lastId);
-        logTest("Suppression du TypeElement avec l'ID : $lastId");
+        $sql = "DELETE FROM TypeTraitement WHERE id = ?";
+        $conn->executeStatement($sql, [$lastId]);
+        logTest("Suppression du Traitement avec l'ID : $lastId");
         nextButton($step, $lastId);
     } catch (\Exception $e) {
-        logTest("Échec de la suppression du TypeElement : " . $e->getMessage(), false);
+        logTest("Échec de la suppression du TypeTraitement : " . $e->getMessage(), false);
         nextButton($step, $lastId);
     }
 }
@@ -86,12 +66,12 @@ else if ($step == 3) {
 // Étape 4 : Vérification de la suppression
 else if ($step == 4) {
     try {
-        $repository = new TypeElementRepository();
-        $typeElement = $repository->findById($lastId);
-        if ($typeElement === null) {
-            logTest("Vérification : Le TypeElement a bien été supprimé.");
+        $sql = "SELECT COUNT(*) as count FROM TypeTraitement WHERE id = ?";
+        $count = $conn->fetchOne($sql, [$lastId]);
+        if ($count == 0) {
+            logTest("Vérification : Le TypeTraitement a bien été supprimé.");
         } else {
-            logTest("Erreur : Le TypeElement n'a pas été supprimé.", false);
+            logTest("Erreur : Le TypeTraitement n'a pas été supprimé.", false);
         }
         echo "<p>Tous les tests sont terminés !</p>";
         backToIndexButton();

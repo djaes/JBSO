@@ -1,22 +1,2 @@
 {# templates/typeElement/list.html.twig #}
-{% extends 'base.html.twig' %}
-
-{% block title %}Liste des types d'éléments{% endblock %}
-
-{% block body %}
-    <h1>Liste des types d'éléments</h1>
-    <a href="/type-element/create">Créer un nouveau type d'élément</a>
-    <ul>
-        {% for typeElement in typeElements %}
-            <li>
-                <a href="/type-element/{{ typeElement.getId() }}">
-                    {{ typeElement.getLibelle() }} a  {{ typeElement.getTraitement() }}
-                </a>
-            </li>
-        {% endfor %}
-    </ul>
-    <a href="/">Retour à l'accueil</a>
-{% endblock %}
-
-
-
+ : A {{ entity.getTraitement() }}
