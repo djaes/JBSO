@@ -5,7 +5,7 @@ namespace JBSO\Controller;
 
 use JBSO\Repository\TypeFinitionRepository;
 
-class TypeFinitionController extends GenericController
+class TypeFinitionController extends AbstractController
 {
     public function __construct()
     {
@@ -19,7 +19,7 @@ class TypeFinitionController extends GenericController
     }
     protected function getName(): string
     {
-        return "Type de Finition";
+        return "type de finition";
     }
     protected function getTemplatePath(): string
     {

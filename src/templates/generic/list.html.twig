@@ -1,26 +1,36 @@
 {# templates/generic/list.html.twig #}
 {% extends 'base.html.twig' %}
 
-{% block title %}Liste des {{ entityName }}{% endblock %}
+{% block title %}Liste des {{ name }}{% endblock %}
 
 {% block body %}
-    <h1>Liste des {{ entityName }}</h1>
-    
-    <a href="/{{ entityName }}/create">Créer un {{ entityName }}</a>
-    <ul>
-        {% for entity in entities %}
-            <li>
-                <a href="/{{ entityName }}/{{ entity.getId() }}">
-                    {{ entity.getLibelle() }}
-                </a>
-                {# Inclut le template spécifique pour les détails de la liste #}
-                {% include template ~ '/list.html.twig' %}
-            </li>
-        {% else %}
-            <li>Aucun(e) {{ entityName }} trouvé(e).</li>
-        {% endfor %}
-    </ul>
-    
-
+    <h1>Liste des {{ name }}</h1>
+    <a href="/{{ entityName }}/create">Créer un(e) {{ name }}</a>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                {% block list_header %}{% endblock %}
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ entity.getId() }}</td>
+                    {% block list %}{% endblock %}
+                    <td>
+                        <a href="/{{ entityName }}/{{ entity.getId() }}">Voir</a>
+                        <a href="/{{ entityName }}/{{ entity.getId() }}/update">Modifier</a>
+                        <a href="/{{ entityName }}/{{ entity.getId() }}/delete" onclick="return confirm('Êtes-vous sûr ?')">Supprimer</a>
+                    </td>
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun(e) {{ name }} trouvé(e).</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
     <a href="/">Retour à l'accueil</a>
 {% endblock %}

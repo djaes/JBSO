@@ -5,7 +5,7 @@ namespace JBSO\Controller;
 
 use JBSO\Repository\TypeCouleurRepository;
 
-class TypeCouleurController extends GenericController
+class TypeCouleurController extends AbstractController
 {
     public function __construct()
     {
@@ -19,7 +19,7 @@ class TypeCouleurController extends GenericController
     }
     protected function getName(): string
     {
-        return "Type de Couleur";
+        return "type de couleur";
     }
     protected function getTemplatePath(): string
     {

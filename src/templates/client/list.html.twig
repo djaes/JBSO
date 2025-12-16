@@ -1,8 +1,24 @@
 {# templates/client/list.html.twig #}
+{% extends "abstract/list.html.twig" %}
 
-{% block list %}
-    <td>{{ entity.getNom() }}</td>
-    <td>{{ entity.getAdresse() }}</td>
-    <td>{{ entity.getTelephone() }}</td>
-    <td>{{ entity.getEmail() }}</td>
+{% block list_header %}Liste des clients{% endblock %}
+
+{% block list_columns %}
+
+    <th>Email &nbsp</th>
+    <th>Téléphone &nbsp</th>
+    <th>Adresse &nbsp</th>
+    <th>CP &nbsp</th>
+    <th>Ville &nbsp</th>
+    <th></th>
+
+{% endblock %}  
+
+{% block list_entity %}
+    <td>{{ entity.getEmail() }} &nbsp</td>
+    <td>{{ entity.getTelephone() }} &nbsp</td>
+    <td>{{ entity.getAdresse() }} &nbsp</td>
+    <td>{{ entity.getCp() }} &nbsp</td>
+    <td>{{ entity.getVille() }} &nbsp</td>
+    
 {% endblock %}

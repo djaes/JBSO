@@ -1,0 +1,16 @@
+{# templates/generic/show.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Détail de {{ entity.getLabel() }}{% endblock %}
+
+{% block body %}
+    {% block show_detail %}<h1>Détails du {{ name }}</h1>{% endblock %}
+    <p>ID : {{ entity.getId() }}</p>
+    <p>Libellé : {{ entity.getLabel() }}</p>
+    {# Inclut le template spécifique pour les détails de l'entité #}
+    <p>{% block show %}{% endblock %}</p>
+
+    <a href="/{{ entityName }}/{{ entity.getId() }}/update">Mettre à jour</a>&nbsp&nbsp&nbsp
+    <a href="/{{ entityName }}/{{ entity.getId() }}/delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce(tte) {{ entityName }} ?');">Supprimer</a>&nbsp&nbsp&nbsp
+    <a href="/{{ entityName }}">Retour à la liste</a>
+{% endblock %}

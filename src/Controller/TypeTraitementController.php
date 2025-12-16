@@ -5,7 +5,7 @@ namespace JBSO\Controller;
 
 use JBSO\Repository\TypeTraitementRepository;
 
-class TypeTraitementController extends GenericController
+class TypeTraitementController extends AbstractController
 {
     public function __construct()
     {
@@ -17,13 +17,13 @@ class TypeTraitementController extends GenericController
     {
         return 'type-traitement';
     }
-
+    protected function getName(): string
+    {
+        return "type de traitement ";
+    }
     protected function getTemplatePath(): string
     {
         return 'typeTraitement';
     }
-    protected function getName(): string
-    {
-        return "Type d'Traitement ";
-    }
+    
 }

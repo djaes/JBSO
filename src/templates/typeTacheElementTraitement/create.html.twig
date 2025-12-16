@@ -1,0 +1,25 @@
+{# templates/typeElementPiece/create.html.twig #}
+{% extends 'abstract/create.html.twig' %}
+
+{% block create_form %}
+    
+    <label for="label">Element ID :</label>
+    <input type="int" id="type_element_id" name="type_element_id" value="{{ entity.getTypeElementId() }}" required>
+    </div>
+    <div>
+    <label for="label">Traitement ID :</label>
+    <input type="int" id="type_traitement_id" name="type_traitement_id" value="{{ entity.getTypeTraitementId() }}" required>
+    </div>
+    <div>
+    <label for="label">Finition ID :</label>
+    <input type="int" id="type_finition_id" name="type_finition_id" value="{{ entity.getTypeFinitionId() }}" required>
+    </div>
+    <div>
+    <label for="label">Ordre :</label>
+    <input type="int" id="ordre" name="ordre" value="{{ entity.getOrdre() }}" required>
+    </div>
+    <div>
+    <label for="label">Tache ID :</label>
+    <input type="int" id="type_tache_id" name="type_tache_id" value="{{ entity.getTypeTacheId() }}" required>
+
+{% endblock %}

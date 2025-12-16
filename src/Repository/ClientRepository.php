@@ -1,14 +1,17 @@
 <?php
+// src/Repository/ClientRepository.php
 namespace JBSO\Repository;
 
-use JBSO\Entity\Client;
-use JBSO\Database\Connection;
-
-class ClientRepository
+class ClientRepository extends AbstractRepository
 {
-    protected function getEntityName(): string
+    protected function getTableName(): string
     {
         return 'Client';
     }
+    protected function getEntityClass(): string
+    {
+        return "JBSO\Entity\Client"::class;
+    }
+    // Méthodes spécifiques à Client (si nécessaire)
     
 }

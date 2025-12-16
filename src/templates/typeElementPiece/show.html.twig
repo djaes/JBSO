@@ -1,0 +1,7 @@
+{# templates/typeElementPiece/show.html.twig #}
+{% extends 'abstract/show.html.twig' %}
+
+{% block show %}
+    <p>Piece id :{{ entity.getTypePieceId() }}</p>
+    <p>Element id : {{ entity.getTypeElementId() }}</p> 
+{% endblock %}

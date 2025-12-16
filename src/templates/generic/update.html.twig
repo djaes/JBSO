@@ -10,8 +10,8 @@
     {% endif %}
     <form method="post" action="/{{ entityName }}/{{ entity.getId() }}/update">
         <div>
-            <label for="libelle">Libellé :</label>
-            <input type="text" id="libelle" name="libelle" value="{{ entity.getLibelle() }}" required>
+            <label for="label">Libellé :</label>
+            <input type="text" id="label" name="label" value="{{ entity.getLabel() }}" required>
         </div>
         <div>
         {# Inclut le template spécifique pour le formulaire de mise à jour #}

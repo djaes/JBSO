@@ -9,7 +9,7 @@ class TacheElementController extends GenericController
     public function __construct()
     {
         parent::__construct();
-        $this->repository = new TacheElementController();
+        $this->repository = new TypeElementController();
     }
 
     protected function getEntityName(): string

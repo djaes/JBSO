@@ -2,37 +2,15 @@
 // src/Entity/Client.php
 namespace JBSO\Entity;
 
-class Client
+class Client extends AbstractEntity
 {
-    private ?int $id;
-    //le nom sera traiter commme label dans les classes generic
-    private string $nom;
     private string $adresse;
     private string $telephone;
     private string $email;
-    private string $label;
-
+    private int $cp;
+    private string $ville;
     // Getters et Setters
-    public function getId(): ?int
-    {
-        return $this->id;
-    }
-
-    public function setId(?int $id): void
-    {
-        $this->id = $id;
-    }
-
-    public function getLabel(): string
-    {
-        return $this->nom;
-    }
-
-    public function setLabel(string $label): void
-    {
-        $this->nom = $label;
-    }
-
+    
     public function getAdresse(): string
     {
         return $this->adresse;
@@ -42,7 +20,25 @@ class Client
     {
         $this->adresse = $adresse;
     }
+    public function getCp(): int
+    {
+        return $this->cp;
+    }
 
+    public function setCp(int $cp): void
+    {
+        $this->cp = $cp;
+    }
+    public function getVille(): string
+    {
+        return $this->ville;
+    }
+
+    public function setVille(string $ville): void
+    {
+        $this->ville = $ville;
+    }
+    
     public function getTelephone(): string
     {
         return $this->telephone;

@@ -1,30 +1,12 @@
-{% extends 'base.html.twig' %}
+{# templates/typeElementPiece/list.html.twig #}
+{% extends 'abstract/list.html.twig' %}
 
-{% block content %}
-    <h1>Liste des Associations entre Types de Pièces et Types d'Éléments</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>ID</th>
-                <th>Type de Pièce</th>
-                <th>Type d'Élément</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for entity in entities %}
-                <tr>
-                    <td>{{ entity.id }}</td>
-                    <td>{{ entity.typePieceLabel }}</td>
-                    <td>{{ entity.typeElementLabel }}</td>
-                    <td>
-                        <a href="/type-element-piece/{{ entity.id }}">Voir</a>
-                        <a href="/type-element-piece/{{ entity.typePiece }}/manage">Gérer</a>
-                        <a href="/type-element-piece/{{ entity.typePiece }}/{{ entity.typeElement }}/delete" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette association ?')">Supprimer</a>
-                    </td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-    <a href="/">Retour à l'accueil</a>
+{% block list_header %}{% endblock %}
+{% block list_columns %}
+    <td>Piece id &nbsp</td>
+    <td>Element id &nbsp</td>
+{% endblock %}
+{% block list_entity %}
+    <td> &nbsp{{ entity.getTypePieceId() }} &nbsp</td>
+    <td> &nbsp{{ entity.getTypeElementId() }} &nbsp</td>    
 {% endblock %}

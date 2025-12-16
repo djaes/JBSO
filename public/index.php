@@ -3,12 +3,13 @@
 
 require __DIR__ . '/../vendor/autoload.php';
 require __DIR__ . '/../debug.php';
-use FastRoute;
+use FastRoute\Dispatcher;
 use JBSO\Routes\Routes;
 
 // Crée le dispatcher FastRoute
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     Routes::load($r);
+              // ✅ Appel correct
 });
 
 
@@ -39,15 +40,9 @@ switch ($routeInfo[0]) {
         break;
     case FastRoute\Dispatcher::FOUND:
         $handler = $routeInfo[1];
-        $vars = $routeInfo[2];
-
-        // Appelle le contrôleur avec les paramètres
-        if (is_callable($handler)) {
-            call_user_func_array($handler, $vars);
-        } else {
-            [$controller, $method] = $handler;
-            $controllerInstance = new $controller();
-            call_user_func_array([$controllerInstance, $method], $vars);
-        }
+        $vars = $routeInfo[2];       
+        list($class, $method) = $handler;
+        $controller = new $class();
+        call_user_func_array([$controller, $method], $vars);
         break;
 }

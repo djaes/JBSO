@@ -1,0 +1,24 @@
+{# templates/client/update.html.twig #}
+{% extends 'abstract/update.html.twig' %}
+
+{% block update_form %}
+    <label for="telephone">Telephone :</label>
+    <input type="string" id="telephone" name="telephone" value="{{ entity.getTelephone() }}" required>
+    </div>
+    <div>
+    <label for="adresse">Adresse :</label>
+    <input type="string" id="adresse" name="adresse" value="{{ entity.getAdresse() }}" required>
+    </div>
+    <div>
+    <label for="cp">Code Postal :</label>
+    <input type="int" id="cp" name="cp" value="{{ entity.getCp() }}" required>
+    </div>
+    <div>
+    <label for="Ville">Ville :</label>
+    <input type="string" id="ville" name="ville" value="{{ entity.getVille() }}" required>
+    </div>
+    <div>
+    <label for="email">Email :</label>
+    <input type="string" id="email" name="email" value="{{ entity.getEmail() }}" required>
+ 
+{% endblock %}

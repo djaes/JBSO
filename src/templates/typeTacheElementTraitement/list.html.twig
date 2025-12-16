@@ -1,0 +1,19 @@
+{# templates/typeTacheElementTraitement/list.html.twig #}
+{% extends 'abstract/list.html.twig' %}
+
+{% block list_columns %}
+    <td>Element id &nbsp</td>
+    <td>Traitement id &nbsp</td>
+    <td>Finition id &nbsp</td>
+    <td>Ordre &nbsp</td>
+    <td>Tache id &nbsp</td>
+    
+{% endblock %}
+{% block list_entity %}
+    <td>{{ entity.getTypeElementId() }}</td> 
+    <td>{{ entity.getTypeTraitementId() }}</td> 
+    <td>{{ entity.getTypeFinitionId() }}</td>
+    <td>{{ entity.getOrdre() }}</td> 
+    <td>{{ entity.getTypeTacheId() }}</td>
+       
+{% endblock %}

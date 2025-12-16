@@ -5,7 +5,7 @@ namespace JBSO\Controller;
 
 use JBSO\Repository\TypePieceRepository;
 
-class TypePieceController extends GenericController
+class TypePieceController extends AbstractController
 {
     public function __construct()
     {
@@ -19,7 +19,7 @@ class TypePieceController extends GenericController
     }
     protected function getName(): string
     {
-        return "Type de Piece";
+        return "type de piece";
     }
     protected function getTemplatePath(): string
     {

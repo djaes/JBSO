@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <h1>Gestion des Types d'Éléments pour {{ typePiece.label }}</h1>
+    <form action="/type-element-piece/{{ typePiece.id }}/save" method="post">
+        {% for typeElement in typeElements %}
+            <div>
+                <input type="checkbox" id="type_element_{{ typeElement.id }}"
+                       name="type_elements[]" value="{{ typeElement.id }}"
+                       {% if typeElement.id in currentTypeElements|map(e => e.typeElement) %}checked{% endif %}>
+                <label for="type_element_{{ typeElement.id }}">
+                    {{ typeElement.label }}
+                </label>
+            </div>
+        {% endfor %}
+        <button type="submit">Enregistrer</button>
+    </form>
+    <a href="/type-element-piece">Retour à la liste</a>
+{% endblock %}

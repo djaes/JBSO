@@ -5,13 +5,28 @@
 
 {% block body %}
     <h1>Bienvenue sur JBSOrganizer</h1>
-    <p>Voici les différentes listes disponibles :</p>
+    <h3><p>Voici les différentes listes disponibles :</p></h3>
     <ul>
         <li><a href="/type-element">Types d'éléments</a></li>
         <li><a href="/type-piece">Types de pièces</a></li>
-        <li><a href="/type-action">Types d'actions</a></li>
+        <li><a href="/type-traitement">Types de traitement</a></li>
         <li><a href="/type-tache">Types de tâches</a></li>
         <li><a href="/type-couleur">Types de couleurs</a></li>
         <li><a href="/type-finition">Types de finitions</a></li>
+
     </ul>
+    <h3>Liste des associtions</h3>
+    <ul>
+        <li><a href="/type-element-piece">Types d'éléments par piece</a></li>
+        <li><a href="/type-tache-element-traitement">Types de tache par éléments par Traitement</a></li>
+        <li><a href="/type-finition">....</a></li>
+
+    </ul>
+    <h3>Liste des Données</h3>
+    <ul>
+        <li><a href="/client">Les Clients</a></li>
+        <li><a href="/chantier-client">Les Chantiers</a></li>
+
+    </ul>
+
 {% endblock %}

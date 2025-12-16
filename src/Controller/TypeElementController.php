@@ -5,7 +5,7 @@ namespace JBSO\Controller;
 
 use JBSO\Repository\TypeElementRepository;
 
-class TypeElementController extends GenericController
+class TypeElementController extends AbstractController
 {
     public function __construct()
     {
@@ -19,7 +19,7 @@ class TypeElementController extends GenericController
     }
     protected function getName(): string
     {
-        return "Type d'element";
+        return "type d'élement";
     }
     protected function getTemplatePath(): string
     {

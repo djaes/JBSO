@@ -1,10 +1,11 @@
 <?php
 // src/Controller/ChantierClientController.php
+
 namespace JBSO\Controller;
 
 use JBSO\Repository\ChantierClientRepository;
 
-class ChantierClientController extends GenericController
+class ChantierClientController extends AbstractController
 {
     public function __construct()
     {
@@ -14,14 +15,12 @@ class ChantierClientController extends GenericController
 
     protected function getEntityName(): string
     {
-        return 'chantier_client';
+        return 'chantier-client';
     }
-
     protected function getName(): string
     {
         return "Chantier";
     }
-
     protected function getTemplatePath(): string
     {
         return 'chantierClient';

@@ -1,0 +1,11 @@
+{# templates/client/show.html.twig #}
+{% extends 'abstract/show.html.twig' %}
+
+{% block show %}
+    <td><p>Email : {{ entity.getEmail() }} &nbsp</td>
+    <td><p>Telephone : {{ entity.getTelephone() }} &nbsp</td>
+    <td><p>Adresse : {{ entity.getAdresse() }} &nbsp</td>
+    <td><p>Code postal : {{ entity.getCp() }} &nbsp</td>
+    <td><p>Ville : {{ entity.getVille() }} &nbsp</td>
+    
+{% endblock %}

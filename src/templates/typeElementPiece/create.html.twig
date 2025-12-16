@@ -1,0 +1,14 @@
+{# templates/typeElementPiece/create.html.twig #}
+{% extends 'abstract/create.html.twig' %}
+
+{% block create_form %}
+    
+    <label for="type_piece_id">Piece ID :</label>
+    <input type="int" id="type_piece_id" name="type_piece_id" value="{{ entity.getTypePieceId() }}" required>
+    </div>
+    <div>
+    <label for="type_element_id">Element ID :</label>
+    <input type="int" id="type_element_id" name="type_element_id" value="{{ entity.getTypeElementId() }}" required>
+ 
+
+{% endblock %}

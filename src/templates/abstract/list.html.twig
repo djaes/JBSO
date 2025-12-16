@@ -1,0 +1,44 @@
+{# templates/generic/list.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des {{ name }}{% endblock %}
+
+{% block body %}
+    {% block list_header %}{% endblock %}
+    
+    <h2>Liste {{ name }}</h2>
+    <h3><a href="/{{ entityName }}/create" class="btn btn-primary">Ajouter un/e {{ name }}</a>
+    &nbsp&nbsp&nbsp<a href="/">Retour à l'accueil</a>
+    </h3>           
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Label</th>
+                {% block list_columns %}{% endblock %}
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for entity in entities %}
+                <h4>
+                <tr>
+                    <td>{{ entity.getId() }}&nbsp&nbsp&nbsp</td>
+                    <td><a href="/{{ entityName }}/{{ entity.getId() }}">{{ entity.getLabel() }}</a>&nbsp&nbsp&nbsp</td>
+                    {% block list_entity %}{% endblock %}
+                    <td>
+                        
+                        <a href="/{{ entityName }}/{{ entity.getId() }}/update">Modifier</a>&nbsp
+                        <a href="/{{ entityName }}/{{ entity.getId() }}/delete" onclick="return confirm('Êtes-vous sûr ?')">Supprimer</a>
+                    </td>
+                </tr>
+                </h4>
+            {% else %}
+                <tr>
+                    <td colspan="3">Aucun(e) {{ name }} trouvé(e).</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    
+{% endblock %}

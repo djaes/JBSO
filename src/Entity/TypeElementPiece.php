@@ -2,23 +2,16 @@
 // src/Entity/TypeElementPiece.php
 namespace JBSO\Entity;
 
-class TypeElementPiece
+class TypeElementPiece extends AbstractEntity
 {
-    private $id;
-    private $typePiece;
-    private $typeElement;
-    private $label;
+    protected  ?int $type_element_id;
+    protected  ?int $type_piece_id;
+    
+    // Getters 
+    public function getTypeElementId(): ?int { return $this->type_element_id; }
+    public function getTypePieceId(): ?int { return $this->type_piece_id; }
 
-    // Getters
-    public function getId(): ?int { return $this->id; }
-    public function getTypePiece(): int{ return $this->typePiece; }
-    public function getTypeElement(): int{ return $this->typeElement; }
-    public function getLabel(): ?string{ return $this->label;}
-    
-    //Setters
-    public function setId(?int $id): void { $this->id = $id; }  
-    public function setTypePiece(int $typePiece): void { $this->typePiece = $typePiece; }
-    public function setTypeElement(int $typeElement): void { $this->typeElement = $typeElement; }
-    public function setLabel(?string $label): void{ $this->label = $label; }
-    
+    // Setters
+    public function setTypeElementId(?int $type_element_id): void { $this->type_element_id = $type_element_id; }
+    public function setTypePieceId(?int $type_piece_id): void { $this->type_piece_id = $type_piece_id; }
 }

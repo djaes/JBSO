@@ -2,17 +2,19 @@
 // src/Repository/TypeCouleurRepository.php
 namespace JBSO\Repository;
 
-
-class TypeCouleurRepository extends GenericRepository
+class TypeCouleurRepository extends AbstractRepository
 {
-    protected function getEntityName(): string
+    protected function getTableName(): string
     {
         return 'TypeCouleur';
     }
-
+    protected function getEntityClass(): string
+    {
+        return "JBSO\Entity\TypeCouleur"::class;
+    }
     
 
-    // Méthodes spécifiques à TypeElement (si nécessaire)
+    // Méthodes spécifiques à TypeCouleur (si nécessaire)
 
 
 }

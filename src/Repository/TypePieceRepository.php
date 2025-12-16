@@ -2,12 +2,16 @@
 // src/Repository/TypePieceRepository.php
 namespace JBSO\Repository;
 
-class TypePieceRepository extends GenericRepository
+class TypePieceRepository extends AbstractRepository
 {
-    protected function getEntityName(): string
+    protected function getTableName(): string
     {
         return 'TypePiece';
     }
-
+    protected function getEntityClass(): string
+    {
+        return "JBSO\Entity\TypePiece"::class;
+    }
+    
     // Méthodes spécifiques à TypePiece (si nécessaire)
 }

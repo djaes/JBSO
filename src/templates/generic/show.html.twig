@@ -6,7 +6,7 @@
 {% block body %}
     <h1>Détails du/de la {{ entityName }}</h1>
     <p>ID : {{ entity.getId() }}</p>
-    <p>Libellé : {{ entity.getLibelle() }}</p>
+    <p>Libellé : {{ entity.getLabel() }}</p>
     {# Inclut le template spécifique pour les détails de l'entité #}
     {% include template ~ '/show.html.twig' %}
 

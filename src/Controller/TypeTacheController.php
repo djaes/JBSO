@@ -5,7 +5,7 @@ namespace JBSO\Controller;
 
 use JBSO\Repository\TypeTacheRepository;
 
-class TypeTacheController extends GenericController
+class TypeTacheController extends AbstractController
 {
     public function __construct()
     {
@@ -19,7 +19,7 @@ class TypeTacheController extends GenericController
     }
     protected function getName(): string
     {
-        return "Type de Tache";
+        return "type de tache";
     }
     protected function getTemplatePath(): string
     {

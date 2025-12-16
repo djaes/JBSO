@@ -1,7 +1,7 @@
 {# templates/chantierClient/list.html.twig #}
-
+{% extends 'abstract/list.html.twig' %}
 {% block list %}
-    <td>{{ entity.getAdresse() }}</td>
+    <td>{{ entity.get() }}</td>
     <td>{{ entity.getDateDebut() }}</td>
     <td>{{ entity.getDateFin() }}</td>
     <td>{{ entity.getLibelle() }}</td>
